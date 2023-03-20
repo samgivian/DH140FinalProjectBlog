@@ -1,0 +1,8 @@
+numpy
+matplotlib
+pandas
+bs4
+requests
+nltk
+networkx
+bokeh
