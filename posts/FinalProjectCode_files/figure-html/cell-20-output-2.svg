@@ -6,7 +6,7 @@
   <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
    <cc:Work>
     <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
-    <dc:date>2023-03-21T02:11:51.461181</dc:date>
+    <dc:date>2023-03-21T02:40:21.682963</dc:date>
     <dc:format>image/svg+xml</dc:format>
     <dc:creator>
      <cc:Agent>
@@ -58,8 +58,8 @@ z
    <g id="matplotlib.axis_1"/>
    <g id="matplotlib.axis_2"/>
    <g id="text_1">
-    <!-- Democrate domiated -->
-    <g transform="translate(155.095325 35.118635) scale(0.1 -0.1)">
+    <!-- Democrate dominated -->
+    <g transform="translate(148.757825 35.118635) scale(0.1 -0.1)">
      <defs>
       <path id="DejaVuSans-44" d="M 1259 4147 
 L 1259 519 
@@ -288,6 +288,25 @@ L 603 4134
 L 603 4863 
 z
 " transform="scale(0.015625)"/>
+      <path id="DejaVuSans-6e" d="M 3513 2113 
+L 3513 0 
+L 2938 0 
+L 2938 2094 
+Q 2938 2591 2744 2837 
+Q 2550 3084 2163 3084 
+Q 1697 3084 1428 2787 
+Q 1159 2491 1159 1978 
+L 1159 0 
+L 581 0 
+L 581 3500 
+L 1159 3500 
+L 1159 2956 
+Q 1366 3272 1645 3428 
+Q 1925 3584 2291 3584 
+Q 2894 3584 3203 3211 
+Q 3513 2838 3513 2113 
+z
+" transform="scale(0.015625)"/>
      </defs>
      <use xlink:href="#DejaVuSans-44"/>
      <use xlink:href="#DejaVuSans-65" x="77.001953"/>
@@ -303,10 +322,11 @@ z
      <use xlink:href="#DejaVuSans-6f" x="650.488281"/>
      <use xlink:href="#DejaVuSans-6d" x="711.669922"/>
      <use xlink:href="#DejaVuSans-69" x="809.082031"/>
-     <use xlink:href="#DejaVuSans-61" x="836.865234"/>
-     <use xlink:href="#DejaVuSans-74" x="898.144531"/>
-     <use xlink:href="#DejaVuSans-65" x="937.353516"/>
-     <use xlink:href="#DejaVuSans-64" x="998.876953"/>
+     <use xlink:href="#DejaVuSans-6e" x="836.865234"/>
+     <use xlink:href="#DejaVuSans-61" x="900.244141"/>
+     <use xlink:href="#DejaVuSans-74" x="961.523438"/>
+     <use xlink:href="#DejaVuSans-65" x="1000.732422"/>
+     <use xlink:href="#DejaVuSans-64" x="1062.255859"/>
     </g>
    </g>
    <g id="text_2">
@@ -463,7 +483,7 @@ z
     </g>
    </g>
    <g id="text_3">
-    <!-- Republican domiated -->
+    <!-- Republican dominated -->
     <g transform="translate(291.2328 278.10899) scale(0.1 -0.1)">
      <defs>
       <path id="DejaVuSans-52" d="M 2841 2188 
@@ -575,25 +595,6 @@ L 603 0
 L 603 4863 
 z
 " transform="scale(0.015625)"/>
-      <path id="DejaVuSans-6e" d="M 3513 2113 
-L 3513 0 
-L 2938 0 
-L 2938 2094 
-Q 2938 2591 2744 2837 
-Q 2550 3084 2163 3084 
-Q 1697 3084 1428 2787 
-Q 1159 2491 1159 1978 
-L 1159 0 
-L 581 0 
-L 581 3500 
-L 1159 3500 
-L 1159 2956 
-Q 1366 3272 1645 3428 
-Q 1925 3584 2291 3584 
-Q 2894 3584 3203 3211 
-Q 3513 2838 3513 2113 
-z
-" transform="scale(0.015625)"/>
      </defs>
      <use xlink:href="#DejaVuSans-52"/>
      <use xlink:href="#DejaVuSans-65" x="64.982422"/>
@@ -610,10 +611,11 @@ z
      <use xlink:href="#DejaVuSans-6f" x="647.306641"/>
      <use xlink:href="#DejaVuSans-6d" x="708.488281"/>
      <use xlink:href="#DejaVuSans-69" x="805.900391"/>
-     <use xlink:href="#DejaVuSans-61" x="833.683594"/>
-     <use xlink:href="#DejaVuSans-74" x="894.962891"/>
-     <use xlink:href="#DejaVuSans-65" x="934.171875"/>
-     <use xlink:href="#DejaVuSans-64" x="995.695312"/>
+     <use xlink:href="#DejaVuSans-6e" x="833.683594"/>
+     <use xlink:href="#DejaVuSans-61" x="897.0625"/>
+     <use xlink:href="#DejaVuSans-74" x="958.341797"/>
+     <use xlink:href="#DejaVuSans-65" x="997.550781"/>
+     <use xlink:href="#DejaVuSans-64" x="1059.074219"/>
     </g>
    </g>
    <g id="text_4">
