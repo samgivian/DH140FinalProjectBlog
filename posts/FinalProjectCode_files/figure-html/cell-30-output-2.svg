@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
   "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="479.714062pt" height="294.110437pt" viewBox="0 0 479.714062 294.110437" xmlns="http://www.w3.org/2000/svg" version="1.1">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="552.565625pt" height="294.110437pt" viewBox="0 0 552.565625 294.110437" xmlns="http://www.w3.org/2000/svg" version="1.1">
  <metadata>
   <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
    <cc:Work>
     <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
-    <dc:date>2023-03-20T23:16:39.242775</dc:date>
+    <dc:date>2023-03-21T01:35:23.066695</dc:date>
     <dc:format>image/svg+xml</dc:format>
     <dc:creator>
      <cc:Agent>
@@ -21,37 +21,37 @@
  </defs>
  <g id="figure_1">
   <g id="patch_1">
-   <path d="M -0 294.110437 
-L 479.714062 294.110437 
-L 479.714062 0 
-L -0 0 
+   <path d="M 0 294.110437 
+L 552.565625 294.110437 
+L 552.565625 0 
+L 0 0 
 z
 " style="fill: #ffffff"/>
   </g>
   <g id="axes_1">
    <g id="patch_2">
-    <path d="M 346.301831 153.854437 
-C 346.301831 138.778957 343.099184 123.874052 336.906501 110.129206 
-C 330.713818 96.38436 321.671238 84.110612 310.379064 74.122773 
-C 299.08689 64.134934 285.80066 56.659023 271.402399 52.191341 
-C 257.004137 47.723658 241.819671 46.365305 226.857042 48.206457 
-C 211.894413 50.04761 197.492218 55.046603 184.606568 62.871572 
-C 171.720918 70.696542 160.64341 81.170411 152.109438 93.597858 
-C 143.575466 106.025306 137.778152 120.125103 135.102358 134.961216 
-C 132.426563 149.797329 132.932841 165.034022 136.587581 179.659787 
-L 239.857031 153.854437 
-L 346.301831 153.854437 
+    <path d="M 382.727612 153.854437 
+C 382.727612 138.778957 379.524965 123.874052 373.332282 110.129206 
+C 367.139599 96.38436 358.097019 84.110612 346.804845 74.122773 
+C 335.512671 64.134934 322.226441 56.659023 307.82818 52.191341 
+C 293.429919 47.723658 278.245452 46.365305 263.282823 48.206457 
+C 248.320194 50.04761 233.917999 55.046603 221.032349 62.871572 
+C 208.146699 70.696542 197.069191 81.170411 188.535219 93.597858 
+C 180.001248 106.025306 174.203933 120.125103 171.528139 134.961216 
+C 168.852345 149.797329 169.358622 165.034022 173.013362 179.659787 
+L 276.282812 153.854437 
+L 382.727612 153.854437 
 z
 " style="fill: #00aef3; stroke: #ffffff; stroke-linejoin: miter"/>
    </g>
    <g id="patch_3">
-    <path d="M 136.587581 179.659787 
-C 142.884054 204.857403 158.19015 226.899501 179.600452 241.602031 
-C 201.010754 256.30456 227.079047 262.674399 252.857021 259.502418 
-C 278.634995 256.330437 302.381409 243.830896 319.588696 224.37647 
-C 336.795983 204.922044 346.301831 179.826835 346.301831 153.854437 
-L 239.857031 153.854437 
-L 136.587581 179.659787 
+    <path d="M 173.013362 179.659787 
+C 179.309835 204.857403 194.615931 226.899501 216.026233 241.602031 
+C 237.436536 256.30456 263.504828 262.674399 289.282802 259.502418 
+C 315.060776 256.330437 338.80719 243.830896 356.014477 224.37647 
+C 373.221764 204.922044 382.727612 179.826835 382.727612 153.854437 
+L 276.282812 153.854437 
+L 173.013362 179.659787 
 z
 " style="fill: #e81b23; stroke: #ffffff; stroke-linejoin: miter"/>
    </g>
@@ -59,7 +59,7 @@ z
    <g id="matplotlib.axis_2"/>
    <g id="text_1">
     <!-- Democrate domiated -->
-    <g transform="translate(118.669543 35.118635) scale(0.1 -0.1)">
+    <g transform="translate(155.095325 35.118635) scale(0.1 -0.1)">
      <defs>
       <path id="DejaVuSans-44" d="M 1259 4147 
 L 1259 519 
@@ -311,7 +311,7 @@ z
    </g>
    <g id="text_2">
     <!-- 53.9% -->
-    <g transform="translate(216.173444 93.225024) scale(0.1 -0.1)">
+    <g transform="translate(252.599225 93.225024) scale(0.1 -0.1)">
      <defs>
       <path id="DejaVuSans-35" d="M 691 4666 
 L 3169 4666 
@@ -464,7 +464,7 @@ z
    </g>
    <g id="text_3">
     <!-- Republican domiated -->
-    <g transform="translate(254.807019 278.10899) scale(0.1 -0.1)">
+    <g transform="translate(291.2328 278.10899) scale(0.1 -0.1)">
      <defs>
       <path id="DejaVuSans-52" d="M 2841 2188 
 Q 3044 2119 3236 1894 
@@ -618,7 +618,7 @@ z
    </g>
    <g id="text_4">
     <!-- 46.1% -->
-    <g transform="translate(231.773431 220.002601) scale(0.1 -0.1)">
+    <g transform="translate(268.199212 220.002601) scale(0.1 -0.1)">
      <defs>
       <path id="DejaVuSans-34" d="M 2419 4116 
 L 825 1625 
@@ -692,7 +692,7 @@ z
     </g>
    </g>
    <g id="text_5">
-    <!-- Comparison of scientists testimonies for Democrat majority vs Republican majority Congress -->
+    <!-- Comparison of scientists testimonies for Democrat majority vs Republican majority house of representative -->
     <g transform="translate(7.2 14.798437) scale(0.1 -0.1)">
      <defs>
       <path id="DejaVuSans-43" d="M 4122 4306 
@@ -814,38 +814,23 @@ L 1503 0
 L 191 3500 
 z
 " transform="scale(0.015625)"/>
-      <path id="DejaVuSans-67" d="M 2906 1791 
-Q 2906 2416 2648 2759 
-Q 2391 3103 1925 3103 
-Q 1463 3103 1205 2759 
-Q 947 2416 947 1791 
-Q 947 1169 1205 825 
-Q 1463 481 1925 481 
-Q 2391 481 2648 825 
-Q 2906 1169 2906 1791 
-z
-M 3481 434 
-Q 3481 -459 3084 -895 
-Q 2688 -1331 1869 -1331 
-Q 1566 -1331 1297 -1286 
-Q 1028 -1241 775 -1147 
-L 775 -588 
-Q 1028 -725 1275 -790 
-Q 1522 -856 1778 -856 
-Q 2344 -856 2625 -561 
-Q 2906 -266 2906 331 
-L 2906 616 
-Q 2728 306 2450 153 
-Q 2172 0 1784 0 
-Q 1141 0 747 490 
-Q 353 981 353 1791 
-Q 353 2603 747 3093 
-Q 1141 3584 1784 3584 
-Q 2172 3584 2450 3431 
-Q 2728 3278 2906 2969 
-L 2906 3500 
-L 3481 3500 
-L 3481 434 
+      <path id="DejaVuSans-68" d="M 3513 2113 
+L 3513 0 
+L 2938 0 
+L 2938 2094 
+Q 2938 2591 2744 2837 
+Q 2550 3084 2163 3084 
+Q 1697 3084 1428 2787 
+Q 1159 2491 1159 1978 
+L 1159 0 
+L 581 0 
+L 581 4863 
+L 1159 4863 
+L 1159 2956 
+Q 1366 3272 1645 3428 
+Q 1925 3584 2291 3584 
+Q 2894 3584 3203 3211 
+Q 3513 2838 3513 2113 
 z
 " transform="scale(0.015625)"/>
      </defs>
@@ -931,14 +916,29 @@ z
      <use xlink:href="#DejaVuSans-74" x="4060.587891"/>
      <use xlink:href="#DejaVuSans-79" x="4099.796875"/>
      <use xlink:href="#DejaVuSans-20" x="4158.976562"/>
-     <use xlink:href="#DejaVuSans-43" x="4190.763672"/>
-     <use xlink:href="#DejaVuSans-6f" x="4260.587891"/>
-     <use xlink:href="#DejaVuSans-6e" x="4321.769531"/>
-     <use xlink:href="#DejaVuSans-67" x="4385.148438"/>
-     <use xlink:href="#DejaVuSans-72" x="4448.625"/>
-     <use xlink:href="#DejaVuSans-65" x="4487.488281"/>
-     <use xlink:href="#DejaVuSans-73" x="4549.011719"/>
-     <use xlink:href="#DejaVuSans-73" x="4601.111328"/>
+     <use xlink:href="#DejaVuSans-68" x="4190.763672"/>
+     <use xlink:href="#DejaVuSans-6f" x="4254.142578"/>
+     <use xlink:href="#DejaVuSans-75" x="4315.324219"/>
+     <use xlink:href="#DejaVuSans-73" x="4378.703125"/>
+     <use xlink:href="#DejaVuSans-65" x="4430.802734"/>
+     <use xlink:href="#DejaVuSans-20" x="4492.326172"/>
+     <use xlink:href="#DejaVuSans-6f" x="4524.113281"/>
+     <use xlink:href="#DejaVuSans-66" x="4585.294922"/>
+     <use xlink:href="#DejaVuSans-20" x="4620.5"/>
+     <use xlink:href="#DejaVuSans-72" x="4652.287109"/>
+     <use xlink:href="#DejaVuSans-65" x="4691.150391"/>
+     <use xlink:href="#DejaVuSans-70" x="4752.673828"/>
+     <use xlink:href="#DejaVuSans-72" x="4816.150391"/>
+     <use xlink:href="#DejaVuSans-65" x="4855.013672"/>
+     <use xlink:href="#DejaVuSans-73" x="4916.537109"/>
+     <use xlink:href="#DejaVuSans-65" x="4968.636719"/>
+     <use xlink:href="#DejaVuSans-6e" x="5030.160156"/>
+     <use xlink:href="#DejaVuSans-74" x="5093.539062"/>
+     <use xlink:href="#DejaVuSans-61" x="5132.748047"/>
+     <use xlink:href="#DejaVuSans-74" x="5194.027344"/>
+     <use xlink:href="#DejaVuSans-69" x="5233.236328"/>
+     <use xlink:href="#DejaVuSans-76" x="5261.019531"/>
+     <use xlink:href="#DejaVuSans-65" x="5320.199219"/>
     </g>
    </g>
   </g>
