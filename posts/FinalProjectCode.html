@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Saman Givian">
-<meta name="dcterms.date" content="2023-03-06">
+<meta name="dcterms.date" content="2023-03-20">
 <meta name="description" content="This project finds the trends for social scientists testimonies before Congress from 1946 to 2016 and why">
 
 <title>Analyzing social scientists’ testimonies trends before the United States Congress from 1946 to 2016</title>
@@ -23,6 +23,69 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1.6em;
   vertical-align: middle;
 }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -131,14 +194,14 @@ ul.task-list li input[type="checkbox"] {
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">March 6, 2023</p>
+        <p class="date">March 20, 2023</p>
       </div>
     </div>
     
       <div>
       <div class="quarto-title-meta-heading">Modified</div>
       <div class="quarto-title-meta-contents">
-        <p class="date-modified">March 6, 2023</p>
+        <p class="date-modified">March 20, 2023</p>
       </div>
     </div>
       
@@ -197,6 +260,7 @@ ul.task-list li input[type="checkbox"] {
 <li>Are there any patterns between crises and the number of scientists testifying before Congress?</li>
 </ol>
 <div class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>pip install <span class="op">-</span>r requirements.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Requirement already satisfied: numpy in /opt/conda/lib/python3.10/site-packages (from -r requirements.txt (line 1)) (1.24.1)
 Requirement already satisfied: matplotlib in /opt/conda/lib/python3.10/site-packages (from -r requirements.txt (line 2)) (3.6.3)
@@ -235,6 +299,34 @@ Note: you may need to restart the kernel to use updated packages.</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> bs4 <span class="im">import</span> BeautifulSoup</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> nltk.probability <span class="im">import</span> FreqDist</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> nltk.tokenize <span class="im">import</span> word_tokenize</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> nltk.corpus <span class="im">import</span> stopwords</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> nltk.corpus <span class="im">import</span> stopwords</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> string <span class="im">import</span> punctuation</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> nltk.collocations <span class="im">import</span> <span class="op">*</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> nltk </span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>nltk.download(<span class="st">'punkt'</span>)</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> networkx <span class="im">as</span> nx</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> bokeh.plotting <span class="im">import</span> figure</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> bokeh.models <span class="im">import</span> Range1d, Circle, ColumnDataSource, MultiLine, LabelSet</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> bokeh.plotting <span class="im">import</span> from_networkx</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> bokeh.io <span class="im">import</span> output_notebook, show, save</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a><span class="co">#To improve resolution</span></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> IPython.display <span class="im">import</span> set_matplotlib_formats</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>set_matplotlib_formats(<span class="st">'svg'</span>)</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.patches <span class="im">as</span> mpatches</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>output_notebook()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>[nltk_data] Downloading package punkt to /home/jovyan/nltk_data...
 [nltk_data]   Package punkt is already up-to-date!
@@ -564,6 +656,10 @@ if (force === true) {
 <h3 class="anchored" data-anchor-id="analytical-process">Analytical process</h3>
 <p>In the explanatory section, I mostly tried to look at what each dataset tells me. I made a bar chart of what type of social scientist appeared the most, which made me curious why there is such a huge skew towards Economists and caused me to find another dataset for further research. I also checked, the political trend of Congress to see how has the political dynamic of the United States changed over time for a better perspective. Later on, I tried to see if there is any relationship between political parties and the number of testimonies with a pie chart. Then made a line chart of the total number of testimonies by year to see if I see a trend that I could dig deeper on. While overall we have an increase and then decrease in the number of testimonies before Congress, Congress’s attitude toward different disciplines might be different which is why I decided to analyze by field in my analysis section. Then I did a text and network analysis to figure out what the issues Congress mostly holds hearings over as they will explain the heavy skew toward economists and figure out what are the issues Congress is mostly focused on.</p>
 <div class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#First Dataset - Social scientist's Congressional testimony</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>df_testimony <span class="op">=</span> pd.read_csv(<span class="st">'https://osf.io/download/asdp8/'</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>df_testimony.to_csv(<span class="st">'SocialScientistsTestiomonyDataset.csv'</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>df_testimony.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="3">
 
 <div>
@@ -723,6 +819,7 @@ if (force === true) {
 </div>
 </div>
 <div class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>df_testimony.tail()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="4">
 
 <div>
@@ -881,12 +978,77 @@ if (force === true) {
 </div>
 </div>
 </div>
+<div class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Second Dataset - Congress's historical data</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co">#Scrapping from the website </span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> requests.get(<span class="st">'https://history.house.gov/Institution/Party-Divisions/Party-Divisions/'</span>)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>html_string <span class="op">=</span> response.text</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>document <span class="op">=</span> BeautifulSoup(html_string, <span class="st">"html.parser"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <div class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Getting the Table Headers from the website</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>columns_headers <span class="op">=</span> []</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>table <span class="op">=</span> document.find(<span class="st">'table'</span>)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>table_header <span class="op">=</span> table.find(<span class="st">"thead"</span>)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> header <span class="kw">in</span> table_header.find_all(<span class="st">"th"</span>):</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    columns_headers.append(header.text.strip())</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(columns_headers)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>['Congress (Years)', '# of House Seats', 'Pro-Administration', 'Anti-Administration', 'Other', 'Del./Res.']</code></pre>
 </div>
 </div>
+<div class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Fixing the headers for the dataframe </span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co">#Since I limited my dataframe to years that Democrats and Republicans were the dominated parties, I changed the headers for them</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>columns_headers[<span class="dv">2</span>] <span class="op">=</span> <span class="st">"Democrats"</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>columns_headers[<span class="dv">3</span>] <span class="op">=</span> <span class="st">"Republicans"</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>columns_headers.append(<span class="st">"Year"</span>)</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>columns_headers.append(<span class="st">"Congress"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Reading through the tables body on the website and only grabbing data for years after 1945</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>congress_breakdown_rows  <span class="op">=</span> []</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Table body</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>table_body <span class="op">=</span> table.find(<span class="st">"tbody"</span>)</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>add_row_permission <span class="op">=</span> <span class="va">False</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>congress_counter <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> row <span class="kw">in</span> table_body.find_all(<span class="st">"tr"</span>):</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>  table_row <span class="op">=</span> []</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>  first_cell <span class="op">=</span> <span class="va">True</span></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>  congress <span class="op">=</span> <span class="st">""</span></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>  year <span class="op">=</span> <span class="st">""</span></span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> cell <span class="kw">in</span> row.find_all(<span class="st">"td"</span>):</span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(first_cell):</span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>      first_cell_list <span class="op">=</span> cell.text.strip().split(<span class="st">" "</span>)</span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>      congress <span class="op">=</span> first_cell_list[<span class="dv">0</span>]</span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>      year <span class="op">=</span> first_cell_list[<span class="dv">1</span>]</span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span>(<span class="st">"1945"</span> <span class="kw">in</span> year):</span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a>        add_row_permission <span class="op">=</span> <span class="va">True</span></span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a>      first_cell <span class="op">=</span> <span class="va">False</span></span>
+<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(add_row_permission):</span>
+<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a>     </span>
+<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a>      table_row.append(cell.text.strip())</span>
+<span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(add_row_permission):</span>
+<span id="cb11-32"><a href="#cb11-32" aria-hidden="true" tabindex="-1"></a>    table_row.append(year)</span>
+<span id="cb11-33"><a href="#cb11-33" aria-hidden="true" tabindex="-1"></a>    table_row.append(congress)</span>
+<span id="cb11-34"><a href="#cb11-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-35"><a href="#cb11-35" aria-hidden="true" tabindex="-1"></a>    congress_breakdown_rows.append(table_row)</span>
+<span id="cb11-36"><a href="#cb11-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-37"><a href="#cb11-37" aria-hidden="true" tabindex="-1"></a>df_congress_breakdown <span class="op">=</span> pd.DataFrame(congress_breakdown_rows, columns<span class="op">=</span>columns_headers)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <div class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>df_congress_breakdown.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="9">
 
 <div>
@@ -967,6 +1129,7 @@ if (force === true) {
 </div>
 </div>
 <div class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>df_congress_breakdown.tail()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="10">
 
 <div>
@@ -1046,14 +1209,23 @@ if (force === true) {
 </div>
 </div>
 </div>
+<div class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>df_congress_breakdown.drop(df_congress_breakdown.tail(<span class="dv">4</span>).index,</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>        inplace <span class="op">=</span> <span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <div class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>df_congress_breakdown.columns</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="12">
 <pre><code>Index(['Congress (Years)', '# of House Seats', 'Democrats', 'Republicans',
        'Other', 'Del./Res.', 'Year', 'Congress'],
       dtype='object')</code></pre>
 </div>
 </div>
+<div class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>df_congress_breakdown.dropna(how<span class="op">=</span><span class="st">'any'</span>, inplace<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <div class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>display(df_congress_breakdown)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 
 <div>
@@ -1485,7 +1657,11 @@ if (force === true) {
 </div>
 </div>
 </div>
+<div class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>df_congress_breakdown.to_csv(<span class="st">'CongressDataset.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <div class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df_congress_breakdown.dtypes)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Congress (Years)    object
 # of House Seats    object
@@ -1498,7 +1674,18 @@ Congress            object
 dtype: object</code></pre>
 </div>
 </div>
+<div class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>df_congress_breakdown[<span class="st">'Democrats'</span>] <span class="op">=</span> df_congress_breakdown[<span class="st">'Democrats'</span>].astype(<span class="bu">int</span>)</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>df_congress_breakdown[<span class="st">'Republicans'</span>] <span class="op">=</span> df_congress_breakdown[<span class="st">'Republicans'</span>].astype(<span class="bu">int</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <div class="cell" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Third Dataset - Recession Data from 1967 - Now</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>df_recession <span class="op">=</span> pd.read_csv(<span class="st">'https://fred.stlouisfed.org/graph/fredgraph.csv?bgcolor=</span><span class="sc">%23e</span><span class="st">1e9f0&amp;chart_type=line&amp;drp=0&amp;fo=open</span><span class="sc">%20s</span><span class="st">ans&amp;graph_bgcolor=</span><span class="sc">%23f</span><span class="st">fffff&amp;height=450&amp;mode=fred&amp;recession_bars=off&amp;txtcolor=%23444444&amp;ts=12&amp;tts=12&amp;width=1318&amp;nt=0&amp;thu=0&amp;trc=0&amp;show_legend=yes&amp;show_axis_titles=yes&amp;show_tooltip=yes&amp;id=JHDUSRGDPBR&amp;scale=left&amp;cosd=1967-10-01&amp;coed=2022-07-01&amp;line_color=%234572a7&amp;link_values=false&amp;line_style=solid&amp;mark_type=none&amp;mw=3&amp;lw=2&amp;ost=-99999&amp;oet=99999&amp;mma=0&amp;fml=a&amp;fq=Quarterly&amp;fam=avg&amp;fgst=lin&amp;fgsnd=2020-02-01&amp;line_index=1&amp;transformation=lin&amp;vintage_date=2023-03-18&amp;revision_date=2023-03-18&amp;nd=1967-10-01'</span>)</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>df_recession.to_csv(<span class="st">'USRecessionData.csv'</span>)</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>df_recession[<span class="st">"Year"</span>] <span class="op">=</span> df_recession[<span class="st">"DATE"</span>].<span class="bu">str</span>[:<span class="dv">4</span>]</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>df_recession <span class="op">=</span> df_recession.rename(columns<span class="op">=</span>{<span class="st">'JHDUSRGDPBR'</span>: <span class="st">'IsRecession'</span>})</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>display(df_recession)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 
 <div>
@@ -1586,6 +1773,34 @@ dtype: object</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Merging the the two datasets </span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>year1 <span class="op">=</span> []</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>year2 <span class="op">=</span> [] </span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> ind <span class="kw">in</span> df_congress_breakdown.index:</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(<span class="st">"2021"</span> <span class="kw">in</span> df_congress_breakdown[<span class="st">'Year'</span>][ind] <span class="kw">and</span> <span class="st">"2019"</span> <span class="kw">in</span> df_congress_breakdown[<span class="st">'Year'</span>][ind]):</span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>        years <span class="op">=</span> df_congress_breakdown[<span class="st">'Year'</span>][ind].split(<span class="st">"-"</span>)</span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>        years <span class="op">=</span> df_congress_breakdown[<span class="st">'Year'</span>][ind].split(<span class="st">"–"</span>)</span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>    year1.append(<span class="bu">int</span>(years[<span class="dv">0</span>][<span class="dv">1</span>:<span class="dv">5</span>]))</span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a>    year2.append(<span class="bu">int</span>(years[<span class="dv">1</span>][<span class="dv">0</span>:<span class="dv">4</span>])<span class="op">-</span><span class="dv">1</span>)</span>
+<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a>df_congress_breakdown[<span class="st">'Year_1'</span>] <span class="op">=</span> year1</span>
+<span id="cb24-16"><a href="#cb24-16" aria-hidden="true" tabindex="-1"></a>df_congress_breakdown[<span class="st">'Year_2'</span>] <span class="op">=</span> year2</span>
+<span id="cb24-17"><a href="#cb24-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-18"><a href="#cb24-18" aria-hidden="true" tabindex="-1"></a>df_testimony[<span class="st">'Year_1'</span>] <span class="op">=</span> df_testimony[<span class="st">"year"</span>]</span>
+<span id="cb24-19"><a href="#cb24-19" aria-hidden="true" tabindex="-1"></a>df_testimony[<span class="st">'Year_2'</span>] <span class="op">=</span> df_testimony[<span class="st">"year"</span>]</span>
+<span id="cb24-20"><a href="#cb24-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-21"><a href="#cb24-21" aria-hidden="true" tabindex="-1"></a>new_df_1 <span class="op">=</span> pd.merge(df_testimony,df_congress_breakdown ,  how<span class="op">=</span><span class="st">'left'</span>, left_on<span class="op">=</span>[<span class="st">'Year_1'</span>], right_on <span class="op">=</span> [<span class="st">'Year_1'</span>])</span>
+<span id="cb24-22"><a href="#cb24-22" aria-hidden="true" tabindex="-1"></a>new_df_2 <span class="op">=</span> pd.merge( df_testimony,df_congress_breakdown ,  how<span class="op">=</span><span class="st">'left'</span>, left_on<span class="op">=</span>[<span class="st">'Year_2'</span>], right_on <span class="op">=</span> [<span class="st">'Year_2'</span>])</span>
+<span id="cb24-23"><a href="#cb24-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-24"><a href="#cb24-24" aria-hidden="true" tabindex="-1"></a>frames <span class="op">=</span> [new_df_1, new_df_2]</span>
+<span id="cb24-25"><a href="#cb24-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-26"><a href="#cb24-26" aria-hidden="true" tabindex="-1"></a>df_merged <span class="op">=</span> pd.concat(frames)</span>
+<span id="cb24-27"><a href="#cb24-27" aria-hidden="true" tabindex="-1"></a>display(df_merged)</span>
+<span id="cb24-28"><a href="#cb24-28" aria-hidden="true" tabindex="-1"></a>df_merged.to_csv(<span class="st">'MergedDataset.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 
 <div>
@@ -1893,6 +2108,18 @@ dtype: object</code></pre>
 <section id="explatory-section" class="level1">
 <h1>Explatory Section</h1>
 <div class="cell" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Visualization 1 - Social Scientists breakdown by field </span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>df_testimony_discipline1 <span class="op">=</span> df_testimony.groupby(<span class="st">'discipline1'</span>)[<span class="st">'discipline1'</span>].count()</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>scientists_type <span class="op">=</span> <span class="bu">list</span>(df_testimony_discipline1.keys())</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>scientists_value <span class="op">=</span> <span class="bu">list</span>(df_testimony_discipline1)</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(scientists_type)</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(scientists_value)</span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>plotdata <span class="op">=</span> pd.DataFrame(</span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>    {<span class="st">"Social Scientists count"</span>: scientists_value}, </span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>    index<span class="op">=</span>scientists_type)</span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a>plotdata.plot(kind<span class="op">=</span><span class="st">"bar"</span>,title <span class="op">=</span> <span class="st">"Social scientists count by field"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>['Anthropologist', 'Economist', 'Political Scientist', 'Psychologist', 'Sociologist']
 [305, 10821, 2482, 970, 904]</code></pre>
@@ -1908,6 +2135,13 @@ dtype: object</code></pre>
 <h4 class="anchored" data-anchor-id="analysis">Analysis</h4>
 <p>The most common social scientists that appeared before congress are economists, followed by political scientists, psychologists, sociologists, and anthropologists. The economists dominat the testimonies by a large margin.</p>
 <div class="cell" data-execution_count="21">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Visualization 2 - Number of Democrate Congress members from 78th to 113th Congress</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>df_congress_breakdown.plot(x <span class="op">=</span> <span class="st">"Congress"</span>,y<span class="op">=</span><span class="st">'Democrats'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, marker<span class="op">=</span><span class="st">'o'</span>, color<span class="op">=</span><span class="st">'b'</span>, label<span class="op">=</span><span class="st">''</span>)</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>plt.title(label<span class="op">=</span><span class="st">"Number of Democrate house of representative from 78th to 113th Congress"</span>,</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>          fontsize<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Congress number'</span>) </span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Count'</span>) </span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>plt.legend()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.</code></pre>
 </div>
@@ -1923,6 +2157,13 @@ dtype: object</code></pre>
 <h4 class="anchored" data-anchor-id="analysis-1">Analysis</h4>
 <p>We have an uptick in the number of Democrate members in the 80-100th Congress, followed by a sharp decline and a slight uptick, and decline again.</p>
 <div class="cell" data-execution_count="22">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Visualization 3 - Number of Republican Congress members from 78th to 113th Congress</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>df_congress_breakdown.plot(x <span class="op">=</span> <span class="st">"Congress"</span>,y<span class="op">=</span><span class="st">'Republicans'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, marker<span class="op">=</span><span class="st">'o'</span>, color<span class="op">=</span><span class="st">'r'</span>, label<span class="op">=</span><span class="st">''</span>)</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>plt.title(label<span class="op">=</span><span class="st">"Number of Republican house of representative members from 78th to 113th Congress"</span>,</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>          fontsize<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Congress number'</span>) </span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Count'</span>)</span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>plt.legend()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.</code></pre>
 </div>
@@ -1938,6 +2179,18 @@ dtype: object</code></pre>
 <h4 class="anchored" data-anchor-id="analysis-2">Analysis</h4>
 <p>We have an decline in the number of Republican members in the 80-100th Congress, followed an increase.</p>
 <div class="cell" data-execution_count="23">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Visualization 4 - Scientists by year</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>df_testimony_appearence_count_year <span class="op">=</span> df_testimony.groupby(<span class="st">'year'</span>)[<span class="st">'year'</span>].count()</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a><span class="co">#print(df_testimony_appearence_count_year)</span></span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="bu">list</span>(df_testimony_appearence_count_year.keys())</span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> <span class="bu">list</span>(df_testimony_appearence_count_year)</span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a>plt.title(label<span class="op">=</span><span class="st">"Number of social scientists testimonies by year "</span>,</span>
+<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a>          fontsize<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Year'</span>) </span>
+<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Count'</span>)</span>
+<span id="cb34-12"><a href="#cb34-12" aria-hidden="true" tabindex="-1"></a>plt.plot(x,y,<span class="st">'g'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="FinalProjectCode_files/figure-html/cell-24-output-1.svg" class="img-fluid"></p>
 </div>
@@ -1947,6 +2200,9 @@ dtype: object</code></pre>
 <h3 class="anchored" data-anchor-id="analysis-3">Analysis</h3>
 <p>As we can we have an overall increase in the number of testimonies from the 1950s to the 1980s, but then we have a continuous downward trend from then on.</p>
 <div class="cell" data-scrolled="true" data-execution_count="24">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>appearence_by_scientists <span class="op">=</span> df_testimony.groupby(<span class="st">'witness_name'</span>)[<span class="st">'witness_name'</span>].count().sort_values(ascending<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(appearence_by_scientists)</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>appearence_by_scientists.describe()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>witness_name
 alan greenspan         189
@@ -1979,6 +2235,12 @@ Name: witness_name, dtype: float64</code></pre>
 <h3 class="anchored" data-anchor-id="analysis-4">Analysis</h3>
 <p>There seem to be several famous scientists who testified alot such as Alan Greenspan and Alice Rivlin, but if have look at the statistics most scientists have only testified at most once.</p>
 <div class="cell" data-execution_count="25">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Visualization 5 - Scientists by year</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>plt.title(label<span class="op">=</span><span class="st">"Number of social scientists testiominals histogram"</span>,</span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>          fontsize<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Number of appearances'</span>) </span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Count'</span>)</span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>plt.hist(appearence_by_scientists,bins<span class="op">=</span><span class="dv">50</span>, color<span class="op">=</span><span class="st">'green'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="25">
 <pre><code>(array([4.795e+03, 3.560e+02, 1.290e+02, 5.000e+01, 2.900e+01, 2.600e+01,
         1.700e+01, 9.000e+00, 1.100e+01, 9.000e+00, 2.000e+00, 5.000e+00,
@@ -2007,6 +2269,16 @@ Name: witness_name, dtype: float64</code></pre>
 <h3 class="anchored" data-anchor-id="analysis-5">Analysis</h3>
 <p>As the histogram show there are barely any scientists who testied more than 25 times and the majority(over 4000 scientists)only testied once or twice.</p>
 <div class="cell" data-execution_count="26">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Visualization 6 - Box plot for scientists apperance by year</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>scientists_by_year <span class="op">=</span> df_merged.groupby(<span class="st">'year'</span>)[<span class="st">'year'</span>].count()</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Box plot of scientists apperance by year "</span>)</span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Count'</span>)</span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>scientists_by_year.plot(kind<span class="op">=</span><span class="st">'box'</span>)</span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Mean: "</span><span class="op">+</span> <span class="bu">str</span>(scientists_by_year.mean()))</span>
+<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Median: "</span><span class="op">+</span> <span class="bu">str</span>(scientists_by_year.median()))</span>
+<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Standard deviation: "</span><span class="op">+</span> <span class="bu">str</span>(scientists_by_year.std()))</span>
+<span id="cb40-9"><a href="#cb40-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Max: "</span><span class="op">+</span> <span class="bu">str</span>(scientists_by_year.<span class="bu">max</span>()))</span>
+<span id="cb40-10"><a href="#cb40-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Min: "</span><span class="op">+</span> <span class="bu">str</span>(scientists_by_year.<span class="bu">min</span>()))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Mean: 436.11267605633805
 Median: 404.0
@@ -2027,11 +2299,37 @@ Min: 60</code></pre>
 <section id="analysis-section" class="level1">
 <h1>Analysis Section</h1>
 <div class="cell" data-execution_count="27">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Visualization 1 - Number of scientists appearenace by Congress - year</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>scientists_by_congress <span class="op">=</span> df_merged.groupby(<span class="st">'Congress'</span>)[<span class="st">'Congress'</span>].count()</span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>x_unsorted <span class="op">=</span> <span class="bu">list</span>(scientists_by_congress.keys())</span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>y_unsorted <span class="op">=</span> <span class="bu">list</span>(scientists_by_congress)</span>
+<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> x_unsorted[<span class="dv">15</span>:]<span class="op">+</span>x_unsorted[<span class="dv">0</span>:<span class="dv">15</span>]</span>
+<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> y_unsorted[<span class="dv">15</span>:]<span class="op">+</span>y_unsorted[<span class="dv">0</span>:<span class="dv">15</span>]</span>
+<span id="cb42-9"><a href="#cb42-9" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>,<span class="dv">10</span>))</span>
+<span id="cb42-10"><a href="#cb42-10" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Number of Congressial scientists testimonies"</span>,fontsize <span class="op">=</span> <span class="dv">10</span>)</span>
+<span id="cb42-11"><a href="#cb42-11" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Count'</span>,fontsize <span class="op">=</span> <span class="dv">10</span>)</span>
+<span id="cb42-12"><a href="#cb42-12" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Congress Number'</span>,fontsize <span class="op">=</span> <span class="dv">10</span>)</span>
+<span id="cb42-13"><a href="#cb42-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-14"><a href="#cb42-14" aria-hidden="true" tabindex="-1"></a>plt.xticks(fontsize <span class="op">=</span> <span class="dv">3</span>)</span>
+<span id="cb42-15"><a href="#cb42-15" aria-hidden="true" tabindex="-1"></a>plt.plot(x,y,<span class="st">'g'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="FinalProjectCode_files/figure-html/cell-28-output-1.svg" class="img-fluid"></p>
 </div>
 </div>
 <div class="cell" data-execution_count="28">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>scientists_by_congress <span class="op">=</span> df_merged.groupby(<span class="st">'Year'</span>)[<span class="st">'Year'</span>].count()</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="bu">list</span>(scientists_by_congress.keys())</span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> <span class="bu">list</span>(scientists_by_congress)</span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>,<span class="dv">10</span>))</span>
+<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Number of scientists testimonies by Congressional term"</span>,fontsize<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb43-8"><a href="#cb43-8" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Count'</span>,fontsize <span class="op">=</span> <span class="dv">10</span>)</span>
+<span id="cb43-9"><a href="#cb43-9" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Congress Congressional term'</span>,fontsize <span class="op">=</span> <span class="dv">10</span>)</span>
+<span id="cb43-10"><a href="#cb43-10" aria-hidden="true" tabindex="-1"></a>plt.xticks(fontsize <span class="op">=</span> <span class="fl">2.5</span>)</span>
+<span id="cb43-11"><a href="#cb43-11" aria-hidden="true" tabindex="-1"></a>plt.plot(x,y,<span class="st">'g'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="FinalProjectCode_files/figure-html/cell-29-output-1.svg" class="img-fluid"></p>
 </div>
@@ -2040,6 +2338,25 @@ Min: 60</code></pre>
 <h3 class="anchored" data-anchor-id="analysis-7">Analysis</h3>
 <p>As we can see from the line chart, the number of testimonies peeked at the 97th Congress(1981-1983), and the lowest number of testimonies happened at the 79th Congress(1945-1947), but this might be because our dataset started counting the number of testimonies from 1946. There is an increase in testimonis during financial crises of 2008, but then it starts to decline again.</p>
 <div class="cell" data-execution_count="29">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Visualization 2 - Number of scientists appearenace by democrate vs republican dominated congress</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>df_democrateDominatedCongress <span class="op">=</span> df_merged[df_merged[<span class="st">"Democrats"</span>]<span class="op">&gt;</span>df_merged[<span class="st">"Republicans"</span>]]</span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>df_republicanDominatedCongress <span class="op">=</span> df_merged[df_merged[<span class="st">"Republicans"</span>]<span class="op">&gt;</span>df_merged[<span class="st">"Democrats"</span>]]</span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a>df_democrateDominatedCongress_count <span class="op">=</span> df_congress_breakdown[df_congress_breakdown[<span class="st">"Democrats"</span>]<span class="op">&gt;</span>df_congress_breakdown[<span class="st">"Republicans"</span>]]</span>
+<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a>df_republicanDominatedCongress_count <span class="op">=</span> df_congress_breakdown[df_congress_breakdown[<span class="st">"Republicans"</span>]<span class="op">&gt;</span>df_congress_breakdown[<span class="st">"Democrats"</span>]]</span>
+<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Number of Congresses with Democrat majority house of representative: "</span> <span class="op">+</span> <span class="bu">str</span>(<span class="bu">len</span>(df_democrateDominatedCongress_count)))</span>
+<span id="cb44-8"><a href="#cb44-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Number of Congresses with Republican majority house of representative: "</span><span class="op">+</span><span class="bu">str</span>(<span class="bu">len</span>(df_republicanDominatedCongress_count)))</span>
+<span id="cb44-9"><a href="#cb44-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-10"><a href="#cb44-10" aria-hidden="true" tabindex="-1"></a><span class="co">#Normalization</span></span>
+<span id="cb44-11"><a href="#cb44-11" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> np.array([<span class="bu">len</span>(df_democrateDominatedCongress)<span class="op">/</span><span class="bu">len</span>(df_democrateDominatedCongress_count), </span>
+<span id="cb44-12"><a href="#cb44-12" aria-hidden="true" tabindex="-1"></a>              <span class="bu">len</span>(df_republicanDominatedCongress)<span class="op">/</span><span class="bu">len</span>(df_republicanDominatedCongress_count)])</span>
+<span id="cb44-13"><a href="#cb44-13" aria-hidden="true" tabindex="-1"></a>mylabels <span class="op">=</span> [<span class="st">"Democrate domiated"</span>, <span class="st">"Republican domiated"</span>]</span>
+<span id="cb44-14"><a href="#cb44-14" aria-hidden="true" tabindex="-1"></a>colors <span class="op">=</span> [<span class="st">'#00AEF3'</span>, <span class="st">'#E81B23'</span>]</span>
+<span id="cb44-15"><a href="#cb44-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-16"><a href="#cb44-16" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Comparison of scientists testimonies for Democrat majority vs Republican majority house of representative"</span>,fontsize <span class="op">=</span> <span class="dv">10</span>)</span>
+<span id="cb44-17"><a href="#cb44-17" aria-hidden="true" tabindex="-1"></a>plt.pie(y, labels <span class="op">=</span> mylabels, autopct<span class="op">=</span><span class="st">'</span><span class="sc">%1.1f%%</span><span class="st">'</span>,labeldistance<span class="op">=</span><span class="fl">1.15</span>, wedgeprops <span class="op">=</span> { <span class="st">'linewidth'</span> : <span class="dv">1</span>, <span class="st">'edgecolor'</span> : <span class="st">'white'</span> }, colors <span class="op">=</span> colors)</span>
+<span id="cb44-18"><a href="#cb44-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-19"><a href="#cb44-19" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Number of Congresses with Democrat majority house of representative: 26
 Number of Congresses with Republican majority house of representative: 11</code></pre>
@@ -2053,12 +2370,27 @@ Number of Congresses with Republican majority house of representative: 11</code>
 <h3 class="anchored" data-anchor-id="analysis-8">Analysis</h3>
 <p>As we can see from the pie chart there does seem to be a small correlation between the number of scientists appearing and wether Congress is Republican or Democrat-dominated. We have had 26 Congress with Democrats since 1946 and 11 Congresses with a Republican majority. After normalization, 53.9% of testimonies happened a Democrate majority Congress and 46.1% with a Republican majority. But this difference isn’t significant enough to state anything conclusively as there may be other factors involved.</p>
 <div class="cell" data-execution_count="30">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>scientist_type <span class="op">=</span> df_merged[<span class="st">'discipline1'</span>].unique()</span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Social scientists disciplines :"</span><span class="op">+</span> <span class="bu">str</span>(scientist_type))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Social scientists disciplines :['Economist' 'Sociologist' 'Political Scientist' 'Psychologist'
  'Anthropologist']</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="31">
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Visualization 3 - Different types of scoial  scientist  appearenace by year</span></span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>df_sociologist <span class="op">=</span> df_merged[df_merged[<span class="st">"discipline1"</span>] <span class="op">==</span> <span class="st">"Sociologist"</span>]</span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>sociologist_by_year <span class="op">=</span> df_sociologist.groupby(<span class="st">'year'</span>)[<span class="st">'year'</span>].count()</span>
+<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="bu">list</span>(sociologist_by_year.keys())</span>
+<span id="cb48-6"><a href="#cb48-6" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> <span class="bu">list</span>(sociologist_by_year)</span>
+<span id="cb48-7"><a href="#cb48-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-8"><a href="#cb48-8" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>,<span class="dv">10</span>))</span>
+<span id="cb48-9"><a href="#cb48-9" aria-hidden="true" tabindex="-1"></a>plt.plot(x,y, linestyle<span class="op">=</span><span class="st">'--'</span>, marker<span class="op">=</span><span class="st">'o'</span>, color<span class="op">=</span><span class="st">'r'</span> )</span>
+<span id="cb48-10"><a href="#cb48-10" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Number of Sociologist testimonies by year"</span>,fontsize<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb48-11"><a href="#cb48-11" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Sociologist Count'</span>,fontsize <span class="op">=</span> <span class="dv">10</span>)</span>
+<span id="cb48-12"><a href="#cb48-12" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Year'</span>,fontsize <span class="op">=</span> <span class="dv">10</span>)</span>
+<span id="cb48-13"><a href="#cb48-13" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="FinalProjectCode_files/figure-html/cell-32-output-1.svg" class="img-fluid"></p>
 </div>
@@ -2068,6 +2400,17 @@ Number of Congresses with Republican majority house of representative: 11</code>
 <h3 class="anchored" data-anchor-id="analysis-9">Analysis</h3>
 <p>We have an uptick in number of sociologists in the 1980s and 1990s, but then we have a continous downward trend. As we the maximum number of sociologists ever appearning before Congress is around 1970’s.</p>
 <div class="cell" data-execution_count="32">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>df_economicist <span class="op">=</span> df_merged[df_merged[<span class="st">"discipline1"</span>] <span class="op">==</span> <span class="st">"Economist"</span>]</span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>economicist_by_year <span class="op">=</span> df_economicist.groupby(<span class="st">'year'</span>)[<span class="st">'year'</span>].count()</span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="bu">list</span>(economicist_by_year.keys())</span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> <span class="bu">list</span>(economicist_by_year)</span>
+<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>,<span class="dv">10</span>))</span>
+<span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a>plt.plot(x,y, linestyle<span class="op">=</span><span class="st">'--'</span>, marker<span class="op">=</span><span class="st">'o'</span>, color<span class="op">=</span><span class="st">'b'</span>, label<span class="op">=</span><span class="st">''</span>)</span>
+<span id="cb49-8"><a href="#cb49-8" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Number of Economist testimonies by year"</span>,fontsize<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb49-9"><a href="#cb49-9" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Economist Count'</span>,fontsize <span class="op">=</span> <span class="dv">10</span>)</span>
+<span id="cb49-10"><a href="#cb49-10" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Year'</span>,fontsize <span class="op">=</span> <span class="dv">10</span>)</span>
+<span id="cb49-11"><a href="#cb49-11" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="FinalProjectCode_files/figure-html/cell-33-output-1.svg" class="img-fluid"></p>
 </div>
@@ -2077,6 +2420,17 @@ Number of Congresses with Republican majority house of representative: 11</code>
 <h3 class="anchored" data-anchor-id="analysis-10">Analysis</h3>
 <p>We have an uptick in the number of economists in the late 1950s and 1960s and most of the 1980s, but then we have a continuous downward trend. But, there is another uptick around the financial crises of 2008 which shows Congress invites significantly more economists when there is a recession.</p>
 <div class="cell" data-execution_count="33">
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>df_political <span class="op">=</span> df_merged[df_merged[<span class="st">"discipline1"</span>] <span class="op">==</span> <span class="st">"Political Scientist"</span>]</span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>political_by_year <span class="op">=</span> df_political.groupby(<span class="st">'year'</span>)[<span class="st">'year'</span>].count()</span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="bu">list</span>(political_by_year.keys())</span>
+<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> <span class="bu">list</span>(political_by_year)</span>
+<span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-6"><a href="#cb50-6" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>,<span class="dv">10</span>))</span>
+<span id="cb50-7"><a href="#cb50-7" aria-hidden="true" tabindex="-1"></a>plt.plot(x,y, linestyle<span class="op">=</span><span class="st">'--'</span>, marker<span class="op">=</span><span class="st">'o'</span>, color<span class="op">=</span><span class="st">'g'</span>, label<span class="op">=</span><span class="st">''</span>)</span>
+<span id="cb50-8"><a href="#cb50-8" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Number of Political Scientist testimonies by year"</span>,fontsize<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb50-9"><a href="#cb50-9" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Political Scientist Count'</span>,fontsize <span class="op">=</span> <span class="dv">10</span>)</span>
+<span id="cb50-10"><a href="#cb50-10" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Year'</span>,fontsize <span class="op">=</span> <span class="dv">10</span>)</span>
+<span id="cb50-11"><a href="#cb50-11" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="FinalProjectCode_files/figure-html/cell-34-output-1.svg" class="img-fluid"></p>
 </div>
@@ -2086,6 +2440,17 @@ Number of Congresses with Republican majority house of representative: 11</code>
 <h3 class="anchored" data-anchor-id="analysis-11">Analysis</h3>
 <p>Contrary to other types of social scientists, there is a continuous increase in the number of political scientists appearing before Congress, this might be because our society has gotten more polarized and more political overtime. The number of political scientists appearing from the 1950s, and 1960s have doubled and tripled in recent years.</p>
 <div class="cell" data-execution_count="34">
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>df_psychologist <span class="op">=</span> df_merged[df_merged[<span class="st">"discipline1"</span>] <span class="op">==</span> <span class="st">"Psychologist"</span>]</span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>psychologist_by_year <span class="op">=</span> df_psychologist.groupby(<span class="st">'year'</span>)[<span class="st">'year'</span>].count()</span>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="bu">list</span>(psychologist_by_year.keys())</span>
+<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> <span class="bu">list</span>(psychologist_by_year)</span>
+<span id="cb51-6"><a href="#cb51-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-7"><a href="#cb51-7" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>,<span class="dv">10</span>))</span>
+<span id="cb51-8"><a href="#cb51-8" aria-hidden="true" tabindex="-1"></a>plt.plot(x,y, linestyle<span class="op">=</span><span class="st">'--'</span>, marker<span class="op">=</span><span class="st">'o'</span>, color<span class="op">=</span><span class="st">'c'</span>, label<span class="op">=</span><span class="st">''</span>)</span>
+<span id="cb51-9"><a href="#cb51-9" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Number of Psychologist Scientist testimonies by year"</span>,fontsize<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb51-10"><a href="#cb51-10" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Psychologist Count'</span>,fontsize <span class="op">=</span> <span class="dv">10</span>)</span>
+<span id="cb51-11"><a href="#cb51-11" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Year'</span>,fontsize <span class="op">=</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="34">
 <pre><code>Text(0.5, 0, 'Year')</code></pre>
 </div>
@@ -2098,6 +2463,17 @@ Number of Congresses with Republican majority house of representative: 11</code>
 <h3 class="anchored" data-anchor-id="analysis-12">Analysis</h3>
 <p>we have an overall decrease in the number of psychologist appearances which was unexpected, because of the growing importance of mental health.</p>
 <div class="cell" data-execution_count="35">
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>df_anthropologist <span class="op">=</span> df_merged[df_merged[<span class="st">"discipline1"</span>] <span class="op">==</span> <span class="st">"Anthropologist"</span>]</span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>anthropologist_by_year <span class="op">=</span> df_anthropologist.groupby(<span class="st">'year'</span>)[<span class="st">'year'</span>].count()</span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="bu">list</span>(anthropologist_by_year.keys())</span>
+<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> <span class="bu">list</span>(anthropologist_by_year)</span>
+<span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-6"><a href="#cb53-6" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>,<span class="dv">10</span>))</span>
+<span id="cb53-7"><a href="#cb53-7" aria-hidden="true" tabindex="-1"></a>plt.plot(x,y, linestyle<span class="op">=</span><span class="st">'--'</span>, marker<span class="op">=</span><span class="st">'o'</span>, color<span class="op">=</span><span class="st">'y'</span>, label<span class="op">=</span><span class="st">''</span>)</span>
+<span id="cb53-8"><a href="#cb53-8" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Number of Anthropologist testimonies by year"</span>,fontsize<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb53-9"><a href="#cb53-9" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Anthropologist Count'</span>,fontsize <span class="op">=</span> <span class="dv">10</span>)</span>
+<span id="cb53-10"><a href="#cb53-10" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Year'</span>,fontsize <span class="op">=</span> <span class="dv">10</span>)</span>
+<span id="cb53-11"><a href="#cb53-11" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="FinalProjectCode_files/figure-html/cell-36-output-1.svg" class="img-fluid"></p>
 </div>
@@ -2106,6 +2482,24 @@ Number of Congresses with Republican majority house of representative: 11</code>
 <h4 class="anchored" data-anchor-id="analysis-13">Analysis</h4>
 <p>Generally, there doesn’t seem to be a lot of antropolgist testifying before Congress, and overall the trend seems to be consist with the exception of the late 1970s.</p>
 <div class="cell" data-execution_count="36">
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Visualization 5 - top 50 sceintsis appeared by field </span></span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>appearence_by_scientists_top50 <span class="op">=</span> appearence_by_scientists[<span class="dv">0</span>:<span class="dv">50</span>]</span>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a>df_merged[<span class="st">'discipline1'</span>] <span class="op">=</span> df_merged[<span class="st">'discipline1'</span>].astype(<span class="bu">str</span>)</span>
+<span id="cb54-5"><a href="#cb54-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-6"><a href="#cb54-6" aria-hidden="true" tabindex="-1"></a>top50scientists_field <span class="op">=</span> {<span class="st">'Sociologist'</span>:<span class="dv">0</span>, <span class="st">'Economist'</span>:<span class="dv">0</span>, <span class="st">'Political Scientist'</span>:<span class="dv">0</span>,<span class="st">'Psychologist'</span>:<span class="dv">0</span>, <span class="st">'Anthropologist'</span>:<span class="dv">0</span>}</span>
+<span id="cb54-7"><a href="#cb54-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-8"><a href="#cb54-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> name <span class="kw">in</span> <span class="bu">list</span>(appearence_by_scientists_top50.keys()):</span>
+<span id="cb54-9"><a href="#cb54-9" aria-hidden="true" tabindex="-1"></a>    df_name <span class="op">=</span> df_merged[df_merged[<span class="st">"witness_name"</span>] <span class="op">==</span> name]</span>
+<span id="cb54-10"><a href="#cb54-10" aria-hidden="true" tabindex="-1"></a>    discipline <span class="op">=</span> df_name.iloc[<span class="dv">0</span>][<span class="st">"discipline1"</span>]</span>
+<span id="cb54-11"><a href="#cb54-11" aria-hidden="true" tabindex="-1"></a>    top50scientists_field[discipline] <span class="op">=</span>  top50scientists_field[discipline]<span class="op">+</span><span class="dv">1</span></span>
+<span id="cb54-12"><a href="#cb54-12" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb54-13"><a href="#cb54-13" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> top50scientists_field.keys()</span>
+<span id="cb54-14"><a href="#cb54-14" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> top50scientists_field.values()</span>
+<span id="cb54-15"><a href="#cb54-15" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Top 50 most appeared scientists by field"</span>,fontsize<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb54-16"><a href="#cb54-16" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Scientist Count'</span>,fontsize <span class="op">=</span> <span class="dv">10</span>)</span>
+<span id="cb54-17"><a href="#cb54-17" aria-hidden="true" tabindex="-1"></a>plt.bar(x, y, color <span class="op">=</span><span class="st">'maroon'</span>,</span>
+<span id="cb54-18"><a href="#cb54-18" aria-hidden="true" tabindex="-1"></a>        width <span class="op">=</span> <span class="fl">0.4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="36">
 <pre><code>&lt;BarContainer object of 5 artists&gt;</code></pre>
 </div>
@@ -2118,7 +2512,61 @@ Number of Congresses with Republican majority house of representative: 11</code>
 <section id="analysis-14" class="level3">
 <h3 class="anchored" data-anchor-id="analysis-14">Analysis</h3>
 <p>Practically all the scientists who appeared the most seem to be from the field of Economics. This might be because generally Federal Reserve chairman/chairwomen and economic advisors work overlap a lot with Congress</p>
+<div class="cell" data-execution_count="37">
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Visualization 6 - Text Analysis of reason of appearance </span></span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a><span class="co">#Getting the description of reason of appearance and tokenzie all all of them</span></span>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a>df_merged[<span class="st">'title_description'</span>] <span class="op">=</span> df_merged[<span class="st">'title_description'</span>].replace(np.nan,<span class="st">""</span>)</span>
+<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-5"><a href="#cb56-5" aria-hidden="true" tabindex="-1"></a>title_descriptions <span class="op">=</span> df_merged[<span class="st">"title_description"</span>].tolist()</span>
+<span id="cb56-6"><a href="#cb56-6" aria-hidden="true" tabindex="-1"></a>title_descriptions_words <span class="op">=</span> []</span>
+<span id="cb56-7"><a href="#cb56-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>,<span class="bu">len</span>(title_descriptions)):</span>
+<span id="cb56-8"><a href="#cb56-8" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> word <span class="kw">in</span> word_tokenize(title_descriptions[i]):</span>
+<span id="cb56-9"><a href="#cb56-9" aria-hidden="true" tabindex="-1"></a>    title_descriptions_words.append(word)</span>
+<span id="cb56-10"><a href="#cb56-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-11"><a href="#cb56-11" aria-hidden="true" tabindex="-1"></a>my_stop_words <span class="op">=</span> <span class="bu">list</span>(punctuation) <span class="op">+</span> stopwords.words(<span class="st">'english'</span>)</span>
+<span id="cb56-12"><a href="#cb56-12" aria-hidden="true" tabindex="-1"></a>title_descriptions_words_cleaned <span class="op">=</span> [w <span class="cf">for</span> w <span class="kw">in</span> title_descriptions_words <span class="cf">if</span> w <span class="kw">not</span> <span class="kw">in</span> my_stop_words]</span>
+<span id="cb56-13"><a href="#cb56-13" aria-hidden="true" tabindex="-1"></a>finder <span class="op">=</span> BigramCollocationFinder.from_words(title_descriptions_words_cleaned)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <div class="cell" data-execution_count="38">
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>source <span class="op">=</span> []</span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>target <span class="op">=</span> []</span>
+<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a>weight <span class="op">=</span> []</span>
+<span id="cb57-4"><a href="#cb57-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-5"><a href="#cb57-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> item <span class="kw">in</span> finder.ngram_fd.items():</span>
+<span id="cb57-6"><a href="#cb57-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(item[<span class="dv">1</span>] <span class="op">&gt;</span> <span class="dv">70</span>):</span>
+<span id="cb57-7"><a href="#cb57-7" aria-hidden="true" tabindex="-1"></a>        source.append(item[<span class="dv">0</span>][<span class="dv">0</span>])</span>
+<span id="cb57-8"><a href="#cb57-8" aria-hidden="true" tabindex="-1"></a>        target.append(item[<span class="dv">0</span>][<span class="dv">1</span>])</span>
+<span id="cb57-9"><a href="#cb57-9" aria-hidden="true" tabindex="-1"></a>        weight.append(item[<span class="dv">1</span>])</span>
+<span id="cb57-10"><a href="#cb57-10" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb57-11"><a href="#cb57-11" aria-hidden="true" tabindex="-1"></a>df_graph <span class="op">=</span> pd.DataFrame({<span class="st">'Source'</span>: source,</span>
+<span id="cb57-12"><a href="#cb57-12" aria-hidden="true" tabindex="-1"></a>                   <span class="st">'Target'</span>:target,</span>
+<span id="cb57-13"><a href="#cb57-13" aria-hidden="true" tabindex="-1"></a>                   <span class="st">'Weight'</span>:weight})</span>
+<span id="cb57-14"><a href="#cb57-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-15"><a href="#cb57-15" aria-hidden="true" tabindex="-1"></a>char_dict <span class="op">=</span> {v:k <span class="cf">for</span> k,v <span class="kw">in</span> <span class="bu">dict</span>(pd.Series(<span class="bu">list</span>(<span class="bu">set</span>(df_graph.Target.unique()).union(<span class="bu">set</span>(df_graph.Source.unique())))).astype(<span class="st">"category"</span>)).items()}</span>
+<span id="cb57-16"><a href="#cb57-16" aria-hidden="true" tabindex="-1"></a>charindex_dict <span class="op">=</span> {v:k <span class="cf">for</span> k,v <span class="kw">in</span> char_dict.items()}</span>
+<span id="cb57-17"><a href="#cb57-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-18"><a href="#cb57-18" aria-hidden="true" tabindex="-1"></a>df_graph[<span class="st">'SourceIndex'</span>] <span class="op">=</span> [char_dict[i] <span class="cf">for</span> i <span class="kw">in</span> df_graph[<span class="st">'Source'</span>].values]</span>
+<span id="cb57-19"><a href="#cb57-19" aria-hidden="true" tabindex="-1"></a>df_graph[<span class="st">'TargetIndex'</span>] <span class="op">=</span> [char_dict[i] <span class="cf">for</span> i <span class="kw">in</span> df_graph[<span class="st">'Target'</span>].values]</span>
+<span id="cb57-20"><a href="#cb57-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-21"><a href="#cb57-21" aria-hidden="true" tabindex="-1"></a>G <span class="op">=</span> nx.from_pandas_edgelist(df_graph, <span class="st">'SourceIndex'</span>, <span class="st">'TargetIndex'</span>, <span class="st">'Weight'</span>)</span>
+<span id="cb57-22"><a href="#cb57-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-23"><a href="#cb57-23" aria-hidden="true" tabindex="-1"></a>plot <span class="op">=</span> figure(x_range<span class="op">=</span>Range1d(<span class="op">-</span><span class="dv">20</span>, <span class="dv">20</span>), y_range<span class="op">=</span>Range1d(<span class="op">-</span><span class="dv">20</span>, <span class="dv">20</span>))</span>
+<span id="cb57-24"><a href="#cb57-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-25"><a href="#cb57-25" aria-hidden="true" tabindex="-1"></a>network_graph <span class="op">=</span> from_networkx(G, nx.spring_layout, scale<span class="op">=</span><span class="dv">20</span>, center<span class="op">=</span>(<span class="dv">0</span>, <span class="dv">0</span>))</span>
+<span id="cb57-26"><a href="#cb57-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-27"><a href="#cb57-27" aria-hidden="true" tabindex="-1"></a>network_graph.node_renderer.glyph <span class="op">=</span> Circle(size<span class="op">=</span><span class="dv">15</span>, fill_color<span class="op">=</span><span class="st">'skyblue'</span>)</span>
+<span id="cb57-28"><a href="#cb57-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-29"><a href="#cb57-29" aria-hidden="true" tabindex="-1"></a>plot.renderers.append(network_graph)</span>
+<span id="cb57-30"><a href="#cb57-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-31"><a href="#cb57-31" aria-hidden="true" tabindex="-1"></a><span class="co">#Add Labels</span></span>
+<span id="cb57-32"><a href="#cb57-32" aria-hidden="true" tabindex="-1"></a>x, y <span class="op">=</span> <span class="bu">zip</span>(<span class="op">*</span>network_graph.layout_provider.graph_layout.values())</span>
+<span id="cb57-33"><a href="#cb57-33" aria-hidden="true" tabindex="-1"></a>node_labels <span class="op">=</span> <span class="bu">list</span>(G.nodes())</span>
+<span id="cb57-34"><a href="#cb57-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-35"><a href="#cb57-35" aria-hidden="true" tabindex="-1"></a>source <span class="op">=</span> ColumnDataSource({<span class="st">'x'</span>: x, <span class="st">'y'</span>: y, <span class="st">'name'</span>: [charindex_dict[i] <span class="cf">for</span> i <span class="kw">in</span> node_labels]})</span>
+<span id="cb57-36"><a href="#cb57-36" aria-hidden="true" tabindex="-1"></a>labels <span class="op">=</span> LabelSet(x<span class="op">=</span><span class="st">'x'</span>, y<span class="op">=</span><span class="st">'y'</span>, text<span class="op">=</span><span class="st">'name'</span>, source<span class="op">=</span>source, background_fill_color<span class="op">=</span><span class="st">'white'</span>, text_font_size<span class="op">=</span><span class="st">'10px'</span>, background_fill_alpha<span class="op">=</span><span class="fl">.7</span>, x_offset<span class="op">=-</span><span class="fl">2.0</span>, y_offset<span class="op">=-</span><span class="fl">2.0</span>)</span>
+<span id="cb57-37"><a href="#cb57-37" aria-hidden="true" tabindex="-1"></a>plot.renderers.append(labels)</span>
+<span id="cb57-38"><a href="#cb57-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-39"><a href="#cb57-39" aria-hidden="true" tabindex="-1"></a>show(plot)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 
   <div id="449d2b8a-a3c2-4e18-9c0c-b58eb958dcd9" data-root-id="p1004" style="display: contents;"></div>
@@ -2156,7 +2604,63 @@ Number of Congresses with Republican majority house of representative: 11</code>
 <section id="analysis-15" class="level3">
 <h3 class="anchored" data-anchor-id="analysis-15">Analysis</h3>
 <p>I used the N-gram method and made a Network analysis to see what words tend to appear a lot next to each. For example words such as small business, Miiddle East, special hearing, free trade, Soviet Union, interest rates, etc appeared a lot which shows what the topics Congress cares about and on what those are the reasons they invited the scientists for testifying.</p>
+<div class="cell" data-execution_count="39">
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>source <span class="op">=</span> []</span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>target <span class="op">=</span> []</span>
+<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a>weight <span class="op">=</span> []</span>
+<span id="cb58-4"><a href="#cb58-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-5"><a href="#cb58-5" aria-hidden="true" tabindex="-1"></a>apperance_commitie_dic <span class="op">=</span> {}</span>
+<span id="cb58-6"><a href="#cb58-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-7"><a href="#cb58-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(df_testimony)):</span>
+<span id="cb58-8"><a href="#cb58-8" aria-hidden="true" tabindex="-1"></a>    value <span class="op">=</span> <span class="bu">str</span>(df_testimony.loc[i, <span class="st">"witness_name"</span>])<span class="op">+</span><span class="st">"-"</span><span class="op">+</span> <span class="bu">str</span>(df_testimony.loc[i, <span class="st">"full_committee1"</span>])</span>
+<span id="cb58-9"><a href="#cb58-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> value <span class="kw">in</span> apperance_commitie_dic:</span>
+<span id="cb58-10"><a href="#cb58-10" aria-hidden="true" tabindex="-1"></a>        apperance_commitie_dic[value] <span class="op">=</span> apperance_commitie_dic[value] <span class="op">+</span> <span class="dv">1</span></span>
+<span id="cb58-11"><a href="#cb58-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb58-12"><a href="#cb58-12" aria-hidden="true" tabindex="-1"></a>        apperance_commitie_dic[value] <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb58-13"><a href="#cb58-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-14"><a href="#cb58-14" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> item <span class="kw">in</span> apperance_commitie_dic:</span>
+<span id="cb58-15"><a href="#cb58-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(apperance_commitie_dic[item] <span class="op">&gt;</span> <span class="dv">10</span>):</span>
+<span id="cb58-16"><a href="#cb58-16" aria-hidden="true" tabindex="-1"></a>        value_list <span class="op">=</span> item.split(<span class="st">"-"</span>)</span>
+<span id="cb58-17"><a href="#cb58-17" aria-hidden="true" tabindex="-1"></a>        source.append(value_list[<span class="dv">0</span>])</span>
+<span id="cb58-18"><a href="#cb58-18" aria-hidden="true" tabindex="-1"></a>        target.append(value_list[<span class="dv">1</span>])</span>
+<span id="cb58-19"><a href="#cb58-19" aria-hidden="true" tabindex="-1"></a>        weight.append(apperance_commitie_dic[item])</span>
+<span id="cb58-20"><a href="#cb58-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-21"><a href="#cb58-21" aria-hidden="true" tabindex="-1"></a>   </span>
+<span id="cb58-22"><a href="#cb58-22" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <div class="cell" data-execution_count="40">
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Network for indivisual who appeared alot and their respective committie</span></span>
+<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a>df_graph <span class="op">=</span> pd.DataFrame({<span class="st">'Source'</span>: source,</span>
+<span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a>                   <span class="st">'Target'</span>:target,</span>
+<span id="cb59-4"><a href="#cb59-4" aria-hidden="true" tabindex="-1"></a>                   <span class="st">'Weight'</span>:weight})</span>
+<span id="cb59-5"><a href="#cb59-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-6"><a href="#cb59-6" aria-hidden="true" tabindex="-1"></a>char_dict <span class="op">=</span> {v:k <span class="cf">for</span> k,v <span class="kw">in</span> <span class="bu">dict</span>(pd.Series(<span class="bu">list</span>(<span class="bu">set</span>(df_graph.Target.unique()).union(<span class="bu">set</span>(df_graph.Source.unique())))).astype(<span class="st">"category"</span>)).items()}</span>
+<span id="cb59-7"><a href="#cb59-7" aria-hidden="true" tabindex="-1"></a>charindex_dict <span class="op">=</span> {v:k <span class="cf">for</span> k,v <span class="kw">in</span> char_dict.items()}</span>
+<span id="cb59-8"><a href="#cb59-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-9"><a href="#cb59-9" aria-hidden="true" tabindex="-1"></a>df_graph[<span class="st">'SourceIndex'</span>] <span class="op">=</span> [char_dict[i] <span class="cf">for</span> i <span class="kw">in</span> df_graph[<span class="st">'Source'</span>].values]</span>
+<span id="cb59-10"><a href="#cb59-10" aria-hidden="true" tabindex="-1"></a>df_graph[<span class="st">'TargetIndex'</span>] <span class="op">=</span> [char_dict[i] <span class="cf">for</span> i <span class="kw">in</span> df_graph[<span class="st">'Target'</span>].values]</span>
+<span id="cb59-11"><a href="#cb59-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-12"><a href="#cb59-12" aria-hidden="true" tabindex="-1"></a>G <span class="op">=</span> nx.from_pandas_edgelist(df_graph, <span class="st">'SourceIndex'</span>, <span class="st">'TargetIndex'</span>, <span class="st">'Weight'</span>)</span>
+<span id="cb59-13"><a href="#cb59-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-14"><a href="#cb59-14" aria-hidden="true" tabindex="-1"></a>plot <span class="op">=</span> figure(x_range<span class="op">=</span>Range1d(<span class="op">-</span><span class="dv">10</span>, <span class="dv">10</span>), y_range<span class="op">=</span>Range1d(<span class="op">-</span><span class="dv">10</span>, <span class="dv">10</span>))</span>
+<span id="cb59-15"><a href="#cb59-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-16"><a href="#cb59-16" aria-hidden="true" tabindex="-1"></a>network_graph <span class="op">=</span> from_networkx(G, nx.spring_layout, scale<span class="op">=</span><span class="dv">10</span>, center<span class="op">=</span>(<span class="dv">0</span>, <span class="dv">0</span>))</span>
+<span id="cb59-17"><a href="#cb59-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-18"><a href="#cb59-18" aria-hidden="true" tabindex="-1"></a>network_graph.node_renderer.glyph <span class="op">=</span> Circle(size<span class="op">=</span><span class="dv">5</span>, fill_color<span class="op">=</span><span class="st">'skyblue'</span>)</span>
+<span id="cb59-19"><a href="#cb59-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-20"><a href="#cb59-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-21"><a href="#cb59-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-22"><a href="#cb59-22" aria-hidden="true" tabindex="-1"></a>plot.renderers.append(network_graph)</span>
+<span id="cb59-23"><a href="#cb59-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-24"><a href="#cb59-24" aria-hidden="true" tabindex="-1"></a><span class="co">#Add Labels</span></span>
+<span id="cb59-25"><a href="#cb59-25" aria-hidden="true" tabindex="-1"></a>x, y <span class="op">=</span> <span class="bu">zip</span>(<span class="op">*</span>network_graph.layout_provider.graph_layout.values())</span>
+<span id="cb59-26"><a href="#cb59-26" aria-hidden="true" tabindex="-1"></a>node_labels <span class="op">=</span> <span class="bu">list</span>(G.nodes())</span>
+<span id="cb59-27"><a href="#cb59-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-28"><a href="#cb59-28" aria-hidden="true" tabindex="-1"></a>source <span class="op">=</span> ColumnDataSource({<span class="st">'x'</span>: x, <span class="st">'y'</span>: y, <span class="st">'name'</span>: [charindex_dict[i] <span class="cf">for</span> i <span class="kw">in</span> node_labels]})</span>
+<span id="cb59-29"><a href="#cb59-29" aria-hidden="true" tabindex="-1"></a>labels <span class="op">=</span> LabelSet(x<span class="op">=</span><span class="st">'x'</span>, y<span class="op">=</span><span class="st">'y'</span>, text<span class="op">=</span><span class="st">'name'</span>, source<span class="op">=</span>source, background_fill_color<span class="op">=</span><span class="st">'white'</span>, text_font_size<span class="op">=</span><span class="st">'10px'</span>, background_fill_alpha<span class="op">=</span><span class="fl">.7</span>, x_offset<span class="op">=-</span><span class="fl">2.0</span>, y_offset<span class="op">=-</span><span class="fl">2.0</span>)</span>
+<span id="cb59-30"><a href="#cb59-30" aria-hidden="true" tabindex="-1"></a>plot.renderers.append(labels)</span>
+<span id="cb59-31"><a href="#cb59-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-32"><a href="#cb59-32" aria-hidden="true" tabindex="-1"></a>show(plot)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 
   <div id="54052c64-422f-471f-855f-b44b15edab8e" data-root-id="p1485" style="display: contents;"></div>
@@ -2195,6 +2699,24 @@ Number of Congresses with Republican majority house of representative: 11</code>
 <h3 class="anchored" data-anchor-id="analysis-16">Analysis</h3>
 <p>As we can see there are certain scientists who appear a lot before certain financial related commities of Congress which demonstrates the closeness of their work with Congress. This helps to furthur explain the skew toward economists in our dataset.</p>
 <div class="cell" data-execution_count="41">
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>freq_y <span class="op">=</span> []</span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>freq_x <span class="op">=</span> []</span>
+<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-4"><a href="#cb60-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> word_pair <span class="kw">in</span> FreqDist(title_descriptions_words_cleaned).most_common(<span class="dv">35</span>):</span>
+<span id="cb60-5"><a href="#cb60-5" aria-hidden="true" tabindex="-1"></a>    freq_x.append(word_pair[<span class="dv">1</span>])</span>
+<span id="cb60-6"><a href="#cb60-6" aria-hidden="true" tabindex="-1"></a>    freq_y.append(word_pair[<span class="dv">0</span>])</span>
+<span id="cb60-7"><a href="#cb60-7" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb60-8"><a href="#cb60-8" aria-hidden="true" tabindex="-1"></a>freq_y.reverse()</span>
+<span id="cb60-9"><a href="#cb60-9" aria-hidden="true" tabindex="-1"></a>freq_x.reverse()</span>
+<span id="cb60-10"><a href="#cb60-10" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> plt.figure()</span>
+<span id="cb60-11"><a href="#cb60-11" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>,<span class="dv">10</span>))</span>
+<span id="cb60-12"><a href="#cb60-12" aria-hidden="true" tabindex="-1"></a>plt.barh(freq_y, freq_x)</span>
+<span id="cb60-13"><a href="#cb60-13" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb60-14"><a href="#cb60-14" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Frequnecy"</span>)</span>
+<span id="cb60-15"><a href="#cb60-15" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Words"</span>)</span>
+<span id="cb60-16"><a href="#cb60-16" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Most appeared words in why scientists that testied"</span>)</span>
+<span id="cb60-17"><a href="#cb60-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-18"><a href="#cb60-18" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>&lt;Figure size 640x480 with 0 Axes&gt;</code></pre>
 </div>
@@ -2207,6 +2729,32 @@ Number of Congresses with Republican majority house of representative: 11</code>
 <h3 class="anchored" data-anchor-id="analysis-17">Analysis</h3>
 <p>The most common words were act, economic, budget, tax, appropriations, reform, health, education, growth, security, and employment.</p>
 <div class="cell" data-execution_count="42">
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Trend line with Recession</span></span>
+<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb62-4"><a href="#cb62-4" aria-hidden="true" tabindex="-1"></a>recession_years <span class="op">=</span> []</span>
+<span id="cb62-5"><a href="#cb62-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb62-6"><a href="#cb62-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(df_recession)):</span>
+<span id="cb62-7"><a href="#cb62-7" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(df_recession.loc[i, <span class="st">"IsRecession"</span>] <span class="op">==</span> <span class="dv">1</span>):</span>
+<span id="cb62-8"><a href="#cb62-8" aria-hidden="true" tabindex="-1"></a>    recession_years.append(df_recession.loc[i, <span class="st">"Year"</span>])</span>
+<span id="cb62-9"><a href="#cb62-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb62-10"><a href="#cb62-10" aria-hidden="true" tabindex="-1"></a>df_merged_by_year <span class="op">=</span> df_merged.groupby(<span class="st">'year'</span>)[<span class="st">'year'</span>].count()</span>
+<span id="cb62-11"><a href="#cb62-11" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="bu">list</span>(df_merged_by_year.keys())</span>
+<span id="cb62-12"><a href="#cb62-12" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> <span class="bu">list</span>(df_merged_by_year)</span>
+<span id="cb62-13"><a href="#cb62-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb62-14"><a href="#cb62-14" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> x1, x2, y1,y2 <span class="kw">in</span> <span class="bu">zip</span>(x, x[<span class="dv">1</span>:], y, y[<span class="dv">1</span>:]):</span>
+<span id="cb62-15"><a href="#cb62-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">str</span>(<span class="bu">int</span>(x1)) <span class="kw">in</span> recession_years:</span>
+<span id="cb62-16"><a href="#cb62-16" aria-hidden="true" tabindex="-1"></a>        plt.plot([x1, x2], [y1, y2], <span class="st">'r'</span>)</span>
+<span id="cb62-17"><a href="#cb62-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb62-18"><a href="#cb62-18" aria-hidden="true" tabindex="-1"></a>        plt.plot([x1, x2], [y1, y2], <span class="st">'b'</span>)</span>
+<span id="cb62-19"><a href="#cb62-19" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb62-20"><a href="#cb62-20" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Line plot of scientists apperance with recession years marked"</span>,fontsize<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb62-21"><a href="#cb62-21" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Scientist Testomial Count'</span>,fontsize <span class="op">=</span> <span class="dv">10</span>)</span>
+<span id="cb62-22"><a href="#cb62-22" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Year'</span>,fontsize <span class="op">=</span> <span class="dv">10</span>)</span>
+<span id="cb62-23"><a href="#cb62-23" aria-hidden="true" tabindex="-1"></a>recession_year_legend <span class="op">=</span> mpatches.Patch(color<span class="op">=</span><span class="st">'r'</span>, label<span class="op">=</span><span class="st">'Years with recession'</span>)</span>
+<span id="cb62-24"><a href="#cb62-24" aria-hidden="true" tabindex="-1"></a>normal_year_legend <span class="op">=</span> mpatches.Patch(color<span class="op">=</span><span class="st">'b'</span>, label<span class="op">=</span><span class="st">'Years without recession'</span>)</span>
+<span id="cb62-25"><a href="#cb62-25" aria-hidden="true" tabindex="-1"></a>plt.legend(handles<span class="op">=</span>[recession_year_legend,normal_year_legend])</span>
+<span id="cb62-26"><a href="#cb62-26" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="FinalProjectCode_files/figure-html/cell-43-output-1.svg" class="img-fluid"></p>
 </div>
